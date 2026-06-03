@@ -1,0 +1,7 @@
+{
+  "job_id": "demo-001",
+  "profile": "distributed-gpu",
+  "instance_ids": ["i-good001", "i-badgpu123"],
+  "mode": "mock",
+  "apply_actions": false
+}

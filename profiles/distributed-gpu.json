@@ -1,0 +1,12 @@
+{
+  "name": "distributed-gpu",
+  "expected_gpu_count": 4,
+  "requires_efa": true,
+  "requires_fsx": true,
+  "requires_nvlink": true,
+  "fast_check_timeout_seconds": 30,
+  "standard_check_timeout_seconds": 300,
+  "block_on_recent_critical_xid": true,
+  "warn_on_ecc_errors": true,
+  "minimum_free_disk_gb": 100
+}

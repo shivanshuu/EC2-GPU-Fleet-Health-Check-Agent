@@ -1,0 +1,12 @@
+{
+  "name": "single-node-gpu",
+  "expected_gpu_count": 1,
+  "requires_efa": false,
+  "requires_fsx": false,
+  "requires_nvlink": false,
+  "fast_check_timeout_seconds": 30,
+  "standard_check_timeout_seconds": 300,
+  "block_on_recent_critical_xid": true,
+  "warn_on_ecc_errors": true,
+  "minimum_free_disk_gb": 50
+}
