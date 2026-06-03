@@ -1,0 +1,86 @@
+{
+  "job_id": "string",
+  "profile": "distributed-gpu",
+  "decision": "GO",
+  "summary": "All 1 instance(s) passed pre-flight checks for job string.",
+  "aggregate_counts": {
+    "passed": 1,
+    "warned": 0,
+    "failed": 0
+  },
+  "instances": [
+    {
+      "instance_id": "xx",
+      "status": "GO",
+      "risk_level": "LOW",
+      "check_depth": "PHASE_1_FAST",
+      "checks": [
+        {
+          "instance_id": "xx",
+          "check_name": "ec2_status",
+          "status": "PASS",
+          "severity": "INFO",
+          "observed": "ok",
+          "expected": "ok",
+          "evidence": "Mock EC2 instance and system status checks were evaluated.",
+          "remediation": null
+        },
+        {
+          "instance_id": "xx",
+          "check_name": "gpu_count",
+          "status": "PASS",
+          "severity": "INFO",
+          "observed": "8",
+          "expected": "8",
+          "evidence": "nvidia-smi -L returned 8 GPU device(s).",
+          "remediation": null
+        },
+        {
+          "instance_id": "xx",
+          "check_name": "efa_available",
+          "status": "PASS",
+          "severity": "INFO",
+          "observed": "present",
+          "expected": "present",
+          "evidence": "fi_info -p efa returned the mock EFA availability result.",
+          "remediation": null
+        },
+        {
+          "instance_id": "xx",
+          "check_name": "fsx_mount",
+          "status": "PASS",
+          "severity": "INFO",
+          "observed": "responsive",
+          "expected": "responsive",
+          "evidence": "Mock mount probe checked FSx path responsiveness.",
+          "remediation": null
+        },
+        {
+          "instance_id": "xx",
+          "check_name": "recent_xid",
+          "status": "PASS",
+          "severity": "INFO",
+          "observed": "none",
+          "expected": "no recent critical XID",
+          "evidence": "Mock kernel log contains no critical XID events.",
+          "remediation": null
+        },
+        {
+          "instance_id": "xx",
+          "check_name": "nvlink_status",
+          "status": "PASS",
+          "severity": "INFO",
+          "observed": "active",
+          "expected": "active",
+          "evidence": "Mock NVLink probe reports active links.",
+          "remediation": null
+        }
+      ],
+      "recommended_action": null
+    }
+  ],
+  "recommended_action": "Proceed with job submission.",
+  "report_markdown": "# GPU Fleet Health Report: string\n\nDecision: `GO`\nProfile: `distributed-gpu`\nCreated: `2026-06-02T20:44:03.338927+00:00`\n\nAll 1 instance(s) passed pre-flight checks for job string.\n\nRecommended action: Proceed with job submission.\n\n## Instance Results\n\n### xx: `GO`\nRisk: `LOW`\nCheck depth: `PHASE_1_FAST`\n\n- `ec2_status` PASS: observed `ok`; expected `ok`; Mock EC2 instance and system status checks were evaluated.\n- `gpu_count` PASS: observed `8`; expected `8`; nvidia-smi -L returned 8 GPU device(s).\n- `efa_available` PASS: observed `present`; expected `present`; fi_info -p efa returned the mock EFA availability result.\n- `fsx_mount` PASS: observed `responsive`; expected `responsive`; Mock mount probe checked FSx path responsiveness.\n- `recent_xid` PASS: observed `none`; expected `no recent critical XID`; Mock kernel log contains no critical XID events.\n- `nvlink_status` PASS: observed `active`; expected `active`; Mock NVLink probe reports active links.\n",
+  "report_uri": null,
+  "created_at": "2026-06-02T20:44:03.338927Z"
+}

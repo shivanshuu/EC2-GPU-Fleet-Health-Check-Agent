@@ -1,0 +1,135 @@
+{
+  "job_id": "g5-ssm-probe-check",
+  "profile": "single-node-gpu",
+  "decision": "FAIL",
+  "summary": "2 of 2 instance(s) failed pre-flight checks for job g5-ssm-probe-check.",
+  "aggregate_counts": {
+    "passed": 0,
+    "warned": 0,
+    "failed": 2
+  },
+  "instances": [
+    {
+      "instance_id": "i-086d21b7ed6e3aaa6",
+      "status": "FAIL",
+      "risk_level": "LOW",
+      "check_depth": "PHASE_1_FAST",
+      "checks": [
+        {
+          "instance_id": "i-086d21b7ed6e3aaa6",
+          "check_name": "instance_state",
+          "status": "FAIL",
+          "severity": "CRITICAL",
+          "observed": "shutting-down",
+          "expected": "running",
+          "evidence": "EC2 DescribeInstances returned the instance lifecycle state.",
+          "remediation": "Start or replace this instance before scheduling the job."
+        },
+        {
+          "instance_id": "i-086d21b7ed6e3aaa6",
+          "check_name": "ec2_status",
+          "status": "FAIL",
+          "severity": "CRITICAL",
+          "observed": "state=shutting-down, system=not-applicable, instance=not-applicable",
+          "expected": "state=running, system=ok, instance=ok",
+          "evidence": "EC2 DescribeInstanceStatus returned AWS system and instance status checks.",
+          "remediation": "Wait for EC2 status checks to pass or replace this instance."
+        },
+        {
+          "instance_id": "i-086d21b7ed6e3aaa6",
+          "check_name": "ssm_managed",
+          "status": "PASS",
+          "severity": "INFO",
+          "observed": "Online",
+          "expected": "Online",
+          "evidence": "SSM DescribeInstanceInformation returned the managed-instance ping status.",
+          "remediation": null
+        },
+        {
+          "instance_id": "i-086d21b7ed6e3aaa6",
+          "check_name": "gpu_count",
+          "status": "PASS",
+          "severity": "INFO",
+          "observed": "1",
+          "expected": "1",
+          "evidence": "GPU count was inferred from EC2 instance type g5.xlarge; SSM probe was unavailable.",
+          "remediation": null
+        },
+        {
+          "instance_id": "i-086d21b7ed6e3aaa6",
+          "check_name": "recent_xid",
+          "status": "WARN",
+          "severity": "WARNING",
+          "observed": "TimedOut",
+          "expected": "no recent critical XID",
+          "evidence": "SSM probe did not finish within 30 seconds.",
+          "remediation": "Check SSM command execution and retry the in-instance probe."
+        }
+      ],
+      "recommended_action": "Block job submission and quarantine or replace the failed node."
+    },
+    {
+      "instance_id": "i-06ac0cdfca64c2d72",
+      "status": "FAIL",
+      "risk_level": "LOW",
+      "check_depth": "PHASE_1_FAST",
+      "checks": [
+        {
+          "instance_id": "i-06ac0cdfca64c2d72",
+          "check_name": "instance_state",
+          "status": "FAIL",
+          "severity": "CRITICAL",
+          "observed": "shutting-down",
+          "expected": "running",
+          "evidence": "EC2 DescribeInstances returned the instance lifecycle state.",
+          "remediation": "Start or replace this instance before scheduling the job."
+        },
+        {
+          "instance_id": "i-06ac0cdfca64c2d72",
+          "check_name": "ec2_status",
+          "status": "FAIL",
+          "severity": "CRITICAL",
+          "observed": "state=shutting-down, system=not-applicable, instance=not-applicable",
+          "expected": "state=running, system=ok, instance=ok",
+          "evidence": "EC2 DescribeInstanceStatus returned AWS system and instance status checks.",
+          "remediation": "Wait for EC2 status checks to pass or replace this instance."
+        },
+        {
+          "instance_id": "i-06ac0cdfca64c2d72",
+          "check_name": "ssm_managed",
+          "status": "PASS",
+          "severity": "INFO",
+          "observed": "Online",
+          "expected": "Online",
+          "evidence": "SSM DescribeInstanceInformation returned the managed-instance ping status.",
+          "remediation": null
+        },
+        {
+          "instance_id": "i-06ac0cdfca64c2d72",
+          "check_name": "gpu_count",
+          "status": "PASS",
+          "severity": "INFO",
+          "observed": "1",
+          "expected": "1",
+          "evidence": "GPU count was inferred from EC2 instance type g5.xlarge; SSM probe was unavailable.",
+          "remediation": null
+        },
+        {
+          "instance_id": "i-06ac0cdfca64c2d72",
+          "check_name": "recent_xid",
+          "status": "WARN",
+          "severity": "WARNING",
+          "observed": "TimedOut",
+          "expected": "no recent critical XID",
+          "evidence": "SSM probe did not finish within 30 seconds.",
+          "remediation": "Check SSM command execution and retry the in-instance probe."
+        }
+      ],
+      "recommended_action": "Block job submission and quarantine or replace the failed node."
+    }
+  ],
+  "recommended_action": "Block job submission, quarantine failed nodes, and select replacement capacity.",
+  "report_markdown": "# GPU Fleet Health Report: g5-ssm-probe-check\n\nDecision: `FAIL`\nProfile: `single-node-gpu`\nCreated: `2026-06-02T21:16:18.976094+00:00`\n\n2 of 2 instance(s) failed pre-flight checks for job g5-ssm-probe-check.\n\nRecommended action: Block job submission, quarantine failed nodes, and select replacement capacity.\n\n## Instance Results\n\n### i-086d21b7ed6e3aaa6: `FAIL`\nRisk: `LOW`\nCheck depth: `PHASE_1_FAST`\nAction: Block job submission and quarantine or replace the failed node.\n\n- `instance_state` FAIL: observed `shutting-down`; expected `running`; EC2 DescribeInstances returned the instance lifecycle state.\n  Remediation: Start or replace this instance before scheduling the job.\n- `ec2_status` FAIL: observed `state=shutting-down, system=not-applicable, instance=not-applicable`; expected `state=running, system=ok, instance=ok`; EC2 DescribeInstanceStatus returned AWS system and instance status checks.\n  Remediation: Wait for EC2 status checks to pass or replace this instance.\n- `ssm_managed` PASS: observed `Online`; expected `Online`; SSM DescribeInstanceInformation returned the managed-instance ping status.\n- `gpu_count` PASS: observed `1`; expected `1`; GPU count was inferred from EC2 instance type g5.xlarge; SSM probe was unavailable.\n- `recent_xid` WARN: observed `TimedOut`; expected `no recent critical XID`; SSM probe did not finish within 30 seconds.\n  Remediation: Check SSM command execution and retry the in-instance probe.\n\n### i-06ac0cdfca64c2d72: `FAIL`\nRisk: `LOW`\nCheck depth: `PHASE_1_FAST`\nAction: Block job submission and quarantine or replace the failed node.\n\n- `instance_state` FAIL: observed `shutting-down`; expected `running`; EC2 DescribeInstances returned the instance lifecycle state.\n  Remediation: Start or replace this instance before scheduling the job.\n- `ec2_status` FAIL: observed `state=shutting-down, system=not-applicable, instance=not-applicable`; expected `state=running, system=ok, instance=ok`; EC2 DescribeInstanceStatus returned AWS system and instance status checks.\n  Remediation: Wait for EC2 status checks to pass or replace this instance.\n- `ssm_managed` PASS: observed `Online`; expected `Online`; SSM DescribeInstanceInformation returned the managed-instance ping status.\n- `gpu_count` PASS: observed `1`; expected `1`; GPU count was inferred from EC2 instance type g5.xlarge; SSM probe was unavailable.\n- `recent_xid` WARN: observed `TimedOut`; expected `no recent critical XID`; SSM probe did not finish within 30 seconds.\n  Remediation: Check SSM command execution and retry the in-instance probe.\n",
+  "report_uri": null,
+  "created_at": "2026-06-02T21:16:18.976094Z"
+}

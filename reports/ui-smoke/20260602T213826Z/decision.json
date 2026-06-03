@@ -1,0 +1,95 @@
+{
+  "job_id": "ui-smoke",
+  "profile": "single-node-gpu",
+  "decision": "FAIL",
+  "summary": "1 of 2 instance(s) failed pre-flight checks for job ui-smoke.",
+  "aggregate_counts": {
+    "passed": 1,
+    "warned": 0,
+    "failed": 1
+  },
+  "instances": [
+    {
+      "instance_id": "i-good001",
+      "status": "GO",
+      "risk_level": "LOW",
+      "check_depth": "PHASE_1_FAST",
+      "checks": [
+        {
+          "instance_id": "i-good001",
+          "check_name": "ec2_status",
+          "status": "PASS",
+          "severity": "INFO",
+          "observed": "ok",
+          "expected": "ok",
+          "evidence": "Mock EC2 instance and system status checks were evaluated.",
+          "remediation": null
+        },
+        {
+          "instance_id": "i-good001",
+          "check_name": "gpu_count",
+          "status": "PASS",
+          "severity": "INFO",
+          "observed": "1",
+          "expected": "1",
+          "evidence": "nvidia-smi -L returned 1 GPU device(s).",
+          "remediation": null
+        },
+        {
+          "instance_id": "i-good001",
+          "check_name": "recent_xid",
+          "status": "PASS",
+          "severity": "INFO",
+          "observed": "none",
+          "expected": "no recent critical XID",
+          "evidence": "Mock kernel log contains no critical XID events.",
+          "remediation": null
+        }
+      ],
+      "recommended_action": null
+    },
+    {
+      "instance_id": "i-badgpu123",
+      "status": "FAIL",
+      "risk_level": "LOW",
+      "check_depth": "PHASE_1_FAST",
+      "checks": [
+        {
+          "instance_id": "i-badgpu123",
+          "check_name": "ec2_status",
+          "status": "PASS",
+          "severity": "INFO",
+          "observed": "ok",
+          "expected": "ok",
+          "evidence": "Mock EC2 instance and system status checks were evaluated.",
+          "remediation": null
+        },
+        {
+          "instance_id": "i-badgpu123",
+          "check_name": "gpu_count",
+          "status": "FAIL",
+          "severity": "CRITICAL",
+          "observed": "0",
+          "expected": "1",
+          "evidence": "nvidia-smi -L returned 0 GPU device(s).",
+          "remediation": "Quarantine node and request replacement before distributed training."
+        },
+        {
+          "instance_id": "i-badgpu123",
+          "check_name": "recent_xid",
+          "status": "PASS",
+          "severity": "INFO",
+          "observed": "none",
+          "expected": "no recent critical XID",
+          "evidence": "Mock kernel log contains no critical XID events.",
+          "remediation": null
+        }
+      ],
+      "recommended_action": "Block job submission and quarantine or replace the failed node."
+    }
+  ],
+  "recommended_action": "Block job submission, quarantine failed nodes, and select replacement capacity.",
+  "report_markdown": "# GPU Fleet Health Report: ui-smoke\n\nDecision: `FAIL`\nProfile: `single-node-gpu`\nCreated: `2026-06-02T21:38:26.760027+00:00`\n\n1 of 2 instance(s) failed pre-flight checks for job ui-smoke.\n\nRecommended action: Block job submission, quarantine failed nodes, and select replacement capacity.\n\n## Instance Results\n\n### i-good001: `GO`\nRisk: `LOW`\nCheck depth: `PHASE_1_FAST`\n\n- `ec2_status` PASS: observed `ok`; expected `ok`; Mock EC2 instance and system status checks were evaluated.\n- `gpu_count` PASS: observed `1`; expected `1`; nvidia-smi -L returned 1 GPU device(s).\n- `recent_xid` PASS: observed `none`; expected `no recent critical XID`; Mock kernel log contains no critical XID events.\n\n### i-badgpu123: `FAIL`\nRisk: `LOW`\nCheck depth: `PHASE_1_FAST`\nAction: Block job submission and quarantine or replace the failed node.\n\n- `ec2_status` PASS: observed `ok`; expected `ok`; Mock EC2 instance and system status checks were evaluated.\n- `gpu_count` FAIL: observed `0`; expected `1`; nvidia-smi -L returned 0 GPU device(s).\n  Remediation: Quarantine node and request replacement before distributed training.\n- `recent_xid` PASS: observed `none`; expected `no recent critical XID`; Mock kernel log contains no critical XID events.\n",
+  "report_uri": null,
+  "created_at": "2026-06-02T21:38:26.760027Z"
+}

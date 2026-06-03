@@ -1,0 +1,195 @@
+{
+  "job_id": "gpu-check-2026-06-02",
+  "profile": "distributed-gpu",
+  "decision": "FAIL",
+  "summary": "2 of 2 instance(s) failed pre-flight checks for job gpu-check-2026-06-02.",
+  "aggregate_counts": {
+    "passed": 0,
+    "warned": 0,
+    "failed": 2
+  },
+  "instances": [
+    {
+      "instance_id": "i-086d21b7ed6e3aaa6",
+      "status": "FAIL",
+      "risk_level": "LOW",
+      "check_depth": "PHASE_1_FAST",
+      "checks": [
+        {
+          "instance_id": "i-086d21b7ed6e3aaa6",
+          "check_name": "instance_state",
+          "status": "FAIL",
+          "severity": "CRITICAL",
+          "observed": "terminated",
+          "expected": "running",
+          "evidence": "EC2 DescribeInstances returned the instance lifecycle state.",
+          "remediation": "Start or replace this instance before scheduling the job."
+        },
+        {
+          "instance_id": "i-086d21b7ed6e3aaa6",
+          "check_name": "ec2_status",
+          "status": "FAIL",
+          "severity": "CRITICAL",
+          "observed": "state=terminated, system=not-applicable, instance=not-applicable",
+          "expected": "state=running, system=ok, instance=ok",
+          "evidence": "EC2 DescribeInstanceStatus returned AWS system and instance status checks.",
+          "remediation": "Wait for EC2 status checks to pass or replace this instance."
+        },
+        {
+          "instance_id": "i-086d21b7ed6e3aaa6",
+          "check_name": "ssm_managed",
+          "status": "WARN",
+          "severity": "WARNING",
+          "observed": "not managed",
+          "expected": "online",
+          "evidence": "SSM DescribeInstanceInformation did not return this instance.",
+          "remediation": "Attach an SSM-capable instance profile and ensure the SSM agent can reach SSM endpoints."
+        },
+        {
+          "instance_id": "i-086d21b7ed6e3aaa6",
+          "check_name": "gpu_count",
+          "status": "FAIL",
+          "severity": "CRITICAL",
+          "observed": "1",
+          "expected": "8",
+          "evidence": "GPU count was inferred from EC2 instance type g5.xlarge; SSM probe was unavailable.",
+          "remediation": "Choose an instance type with the expected GPU count or update the job profile."
+        },
+        {
+          "instance_id": "i-086d21b7ed6e3aaa6",
+          "check_name": "efa_available",
+          "status": "FAIL",
+          "severity": "CRITICAL",
+          "observed": "missing",
+          "expected": "present",
+          "evidence": "EC2 network interfaces reported: none.",
+          "remediation": "Launch with an EFA-enabled network interface for distributed GPU jobs."
+        },
+        {
+          "instance_id": "i-086d21b7ed6e3aaa6",
+          "check_name": "fsx_mount",
+          "status": "WARN",
+          "severity": "WARNING",
+          "observed": "not probed",
+          "expected": "responsive",
+          "evidence": "FSx mount requires an in-instance probe; AWS fast mode only checked EC2 metadata.",
+          "remediation": "Enable SSM or another in-instance execution path for this check."
+        },
+        {
+          "instance_id": "i-086d21b7ed6e3aaa6",
+          "check_name": "recent_xid",
+          "status": "WARN",
+          "severity": "WARNING",
+          "observed": "not probed",
+          "expected": "no recent critical XID",
+          "evidence": "GPU XID history requires an SSM in-instance log probe, but this instance is not online in SSM.",
+          "remediation": "Enable SSM or another in-instance execution path for this check."
+        },
+        {
+          "instance_id": "i-086d21b7ed6e3aaa6",
+          "check_name": "nvlink_status",
+          "status": "WARN",
+          "severity": "WARNING",
+          "observed": "not probed",
+          "expected": "active",
+          "evidence": "NVLink status requires an in-instance GPU probe; AWS fast mode did not run nvidia-smi.",
+          "remediation": "Enable SSM or another in-instance execution path for this check."
+        }
+      ],
+      "recommended_action": "Block job submission and quarantine or replace the failed node."
+    },
+    {
+      "instance_id": "i-06ac0cdfca64c2d72",
+      "status": "FAIL",
+      "risk_level": "LOW",
+      "check_depth": "PHASE_1_FAST",
+      "checks": [
+        {
+          "instance_id": "i-06ac0cdfca64c2d72",
+          "check_name": "instance_state",
+          "status": "FAIL",
+          "severity": "CRITICAL",
+          "observed": "terminated",
+          "expected": "running",
+          "evidence": "EC2 DescribeInstances returned the instance lifecycle state.",
+          "remediation": "Start or replace this instance before scheduling the job."
+        },
+        {
+          "instance_id": "i-06ac0cdfca64c2d72",
+          "check_name": "ec2_status",
+          "status": "FAIL",
+          "severity": "CRITICAL",
+          "observed": "state=terminated, system=not-applicable, instance=not-applicable",
+          "expected": "state=running, system=ok, instance=ok",
+          "evidence": "EC2 DescribeInstanceStatus returned AWS system and instance status checks.",
+          "remediation": "Wait for EC2 status checks to pass or replace this instance."
+        },
+        {
+          "instance_id": "i-06ac0cdfca64c2d72",
+          "check_name": "ssm_managed",
+          "status": "WARN",
+          "severity": "WARNING",
+          "observed": "not managed",
+          "expected": "online",
+          "evidence": "SSM DescribeInstanceInformation did not return this instance.",
+          "remediation": "Attach an SSM-capable instance profile and ensure the SSM agent can reach SSM endpoints."
+        },
+        {
+          "instance_id": "i-06ac0cdfca64c2d72",
+          "check_name": "gpu_count",
+          "status": "FAIL",
+          "severity": "CRITICAL",
+          "observed": "1",
+          "expected": "8",
+          "evidence": "GPU count was inferred from EC2 instance type g5.xlarge; SSM probe was unavailable.",
+          "remediation": "Choose an instance type with the expected GPU count or update the job profile."
+        },
+        {
+          "instance_id": "i-06ac0cdfca64c2d72",
+          "check_name": "efa_available",
+          "status": "FAIL",
+          "severity": "CRITICAL",
+          "observed": "missing",
+          "expected": "present",
+          "evidence": "EC2 network interfaces reported: none.",
+          "remediation": "Launch with an EFA-enabled network interface for distributed GPU jobs."
+        },
+        {
+          "instance_id": "i-06ac0cdfca64c2d72",
+          "check_name": "fsx_mount",
+          "status": "WARN",
+          "severity": "WARNING",
+          "observed": "not probed",
+          "expected": "responsive",
+          "evidence": "FSx mount requires an in-instance probe; AWS fast mode only checked EC2 metadata.",
+          "remediation": "Enable SSM or another in-instance execution path for this check."
+        },
+        {
+          "instance_id": "i-06ac0cdfca64c2d72",
+          "check_name": "recent_xid",
+          "status": "WARN",
+          "severity": "WARNING",
+          "observed": "not probed",
+          "expected": "no recent critical XID",
+          "evidence": "GPU XID history requires an SSM in-instance log probe, but this instance is not online in SSM.",
+          "remediation": "Enable SSM or another in-instance execution path for this check."
+        },
+        {
+          "instance_id": "i-06ac0cdfca64c2d72",
+          "check_name": "nvlink_status",
+          "status": "WARN",
+          "severity": "WARNING",
+          "observed": "not probed",
+          "expected": "active",
+          "evidence": "NVLink status requires an in-instance GPU probe; AWS fast mode did not run nvidia-smi.",
+          "remediation": "Enable SSM or another in-instance execution path for this check."
+        }
+      ],
+      "recommended_action": "Block job submission and quarantine or replace the failed node."
+    }
+  ],
+  "recommended_action": "Block job submission, quarantine failed nodes, and select replacement capacity.",
+  "report_markdown": "# GPU Fleet Health Report: gpu-check-2026-06-02\n\nDecision: `FAIL`\nProfile: `distributed-gpu`\nCreated: `2026-06-02T21:30:42.331249+00:00`\n\n2 of 2 instance(s) failed pre-flight checks for job gpu-check-2026-06-02.\n\nRecommended action: Block job submission, quarantine failed nodes, and select replacement capacity.\n\n## Instance Results\n\n### i-086d21b7ed6e3aaa6: `FAIL`\nRisk: `LOW`\nCheck depth: `PHASE_1_FAST`\nAction: Block job submission and quarantine or replace the failed node.\n\n- `instance_state` FAIL: observed `terminated`; expected `running`; EC2 DescribeInstances returned the instance lifecycle state.\n  Remediation: Start or replace this instance before scheduling the job.\n- `ec2_status` FAIL: observed `state=terminated, system=not-applicable, instance=not-applicable`; expected `state=running, system=ok, instance=ok`; EC2 DescribeInstanceStatus returned AWS system and instance status checks.\n  Remediation: Wait for EC2 status checks to pass or replace this instance.\n- `ssm_managed` WARN: observed `not managed`; expected `online`; SSM DescribeInstanceInformation did not return this instance.\n  Remediation: Attach an SSM-capable instance profile and ensure the SSM agent can reach SSM endpoints.\n- `gpu_count` FAIL: observed `1`; expected `8`; GPU count was inferred from EC2 instance type g5.xlarge; SSM probe was unavailable.\n  Remediation: Choose an instance type with the expected GPU count or update the job profile.\n- `efa_available` FAIL: observed `missing`; expected `present`; EC2 network interfaces reported: none.\n  Remediation: Launch with an EFA-enabled network interface for distributed GPU jobs.\n- `fsx_mount` WARN: observed `not probed`; expected `responsive`; FSx mount requires an in-instance probe; AWS fast mode only checked EC2 metadata.\n  Remediation: Enable SSM or another in-instance execution path for this check.\n- `recent_xid` WARN: observed `not probed`; expected `no recent critical XID`; GPU XID history requires an SSM in-instance log probe, but this instance is not online in SSM.\n  Remediation: Enable SSM or another in-instance execution path for this check.\n- `nvlink_status` WARN: observed `not probed`; expected `active`; NVLink status requires an in-instance GPU probe; AWS fast mode did not run nvidia-smi.\n  Remediation: Enable SSM or another in-instance execution path for this check.\n\n### i-06ac0cdfca64c2d72: `FAIL`\nRisk: `LOW`\nCheck depth: `PHASE_1_FAST`\nAction: Block job submission and quarantine or replace the failed node.\n\n- `instance_state` FAIL: observed `terminated`; expected `running`; EC2 DescribeInstances returned the instance lifecycle state.\n  Remediation: Start or replace this instance before scheduling the job.\n- `ec2_status` FAIL: observed `state=terminated, system=not-applicable, instance=not-applicable`; expected `state=running, system=ok, instance=ok`; EC2 DescribeInstanceStatus returned AWS system and instance status checks.\n  Remediation: Wait for EC2 status checks to pass or replace this instance.\n- `ssm_managed` WARN: observed `not managed`; expected `online`; SSM DescribeInstanceInformation did not return this instance.\n  Remediation: Attach an SSM-capable instance profile and ensure the SSM agent can reach SSM endpoints.\n- `gpu_count` FAIL: observed `1`; expected `8`; GPU count was inferred from EC2 instance type g5.xlarge; SSM probe was unavailable.\n  Remediation: Choose an instance type with the expected GPU count or update the job profile.\n- `efa_available` FAIL: observed `missing`; expected `present`; EC2 network interfaces reported: none.\n  Remediation: Launch with an EFA-enabled network interface for distributed GPU jobs.\n- `fsx_mount` WARN: observed `not probed`; expected `responsive`; FSx mount requires an in-instance probe; AWS fast mode only checked EC2 metadata.\n  Remediation: Enable SSM or another in-instance execution path for this check.\n- `recent_xid` WARN: observed `not probed`; expected `no recent critical XID`; GPU XID history requires an SSM in-instance log probe, but this instance is not online in SSM.\n  Remediation: Enable SSM or another in-instance execution path for this check.\n- `nvlink_status` WARN: observed `not probed`; expected `active`; NVLink status requires an in-instance GPU probe; AWS fast mode did not run nvidia-smi.\n  Remediation: Enable SSM or another in-instance execution path for this check.\n",
+  "report_uri": null,
+  "created_at": "2026-06-02T21:30:42.331249Z"
+}

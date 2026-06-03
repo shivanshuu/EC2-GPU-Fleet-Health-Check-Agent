@@ -1,0 +1,155 @@
+{
+  "job_id": "demo-001",
+  "profile": "distributed-gpu",
+  "decision": "FAIL",
+  "summary": "1 of 2 instance(s) failed pre-flight checks for job demo-001.",
+  "aggregate_counts": {
+    "passed": 1,
+    "warned": 0,
+    "failed": 1
+  },
+  "instances": [
+    {
+      "instance_id": "i-good001",
+      "status": "GO",
+      "risk_level": "LOW",
+      "check_depth": "PHASE_1_FAST",
+      "checks": [
+        {
+          "instance_id": "i-good001",
+          "check_name": "ec2_status",
+          "status": "PASS",
+          "severity": "INFO",
+          "observed": "ok",
+          "expected": "ok",
+          "evidence": "Mock EC2 instance and system status checks were evaluated.",
+          "remediation": null
+        },
+        {
+          "instance_id": "i-good001",
+          "check_name": "gpu_count",
+          "status": "PASS",
+          "severity": "INFO",
+          "observed": "8",
+          "expected": "8",
+          "evidence": "nvidia-smi -L returned 8 GPU device(s).",
+          "remediation": null
+        },
+        {
+          "instance_id": "i-good001",
+          "check_name": "efa_available",
+          "status": "PASS",
+          "severity": "INFO",
+          "observed": "present",
+          "expected": "present",
+          "evidence": "fi_info -p efa returned the mock EFA availability result.",
+          "remediation": null
+        },
+        {
+          "instance_id": "i-good001",
+          "check_name": "fsx_mount",
+          "status": "PASS",
+          "severity": "INFO",
+          "observed": "responsive",
+          "expected": "responsive",
+          "evidence": "Mock mount probe checked FSx path responsiveness.",
+          "remediation": null
+        },
+        {
+          "instance_id": "i-good001",
+          "check_name": "recent_xid",
+          "status": "PASS",
+          "severity": "INFO",
+          "observed": "none",
+          "expected": "no recent critical XID",
+          "evidence": "Mock kernel log contains no critical XID events.",
+          "remediation": null
+        },
+        {
+          "instance_id": "i-good001",
+          "check_name": "nvlink_status",
+          "status": "PASS",
+          "severity": "INFO",
+          "observed": "active",
+          "expected": "active",
+          "evidence": "Mock NVLink probe reports active links.",
+          "remediation": null
+        }
+      ],
+      "recommended_action": null
+    },
+    {
+      "instance_id": "i-badgpu123",
+      "status": "FAIL",
+      "risk_level": "LOW",
+      "check_depth": "PHASE_1_FAST",
+      "checks": [
+        {
+          "instance_id": "i-badgpu123",
+          "check_name": "ec2_status",
+          "status": "PASS",
+          "severity": "INFO",
+          "observed": "ok",
+          "expected": "ok",
+          "evidence": "Mock EC2 instance and system status checks were evaluated.",
+          "remediation": null
+        },
+        {
+          "instance_id": "i-badgpu123",
+          "check_name": "gpu_count",
+          "status": "FAIL",
+          "severity": "CRITICAL",
+          "observed": "7",
+          "expected": "8",
+          "evidence": "nvidia-smi -L returned 7 GPU device(s).",
+          "remediation": "Quarantine node and request replacement before distributed training."
+        },
+        {
+          "instance_id": "i-badgpu123",
+          "check_name": "efa_available",
+          "status": "PASS",
+          "severity": "INFO",
+          "observed": "present",
+          "expected": "present",
+          "evidence": "fi_info -p efa returned the mock EFA availability result.",
+          "remediation": null
+        },
+        {
+          "instance_id": "i-badgpu123",
+          "check_name": "fsx_mount",
+          "status": "PASS",
+          "severity": "INFO",
+          "observed": "responsive",
+          "expected": "responsive",
+          "evidence": "Mock mount probe checked FSx path responsiveness.",
+          "remediation": null
+        },
+        {
+          "instance_id": "i-badgpu123",
+          "check_name": "recent_xid",
+          "status": "PASS",
+          "severity": "INFO",
+          "observed": "none",
+          "expected": "no recent critical XID",
+          "evidence": "Mock kernel log contains no critical XID events.",
+          "remediation": null
+        },
+        {
+          "instance_id": "i-badgpu123",
+          "check_name": "nvlink_status",
+          "status": "PASS",
+          "severity": "INFO",
+          "observed": "active",
+          "expected": "active",
+          "evidence": "Mock NVLink probe reports active links.",
+          "remediation": null
+        }
+      ],
+      "recommended_action": "Block job submission and quarantine or replace the failed node."
+    }
+  ],
+  "recommended_action": "Block job submission, quarantine failed nodes, and select replacement capacity.",
+  "report_markdown": "# GPU Fleet Health Report: demo-001\n\nDecision: `FAIL`\nProfile: `distributed-gpu`\nCreated: `2026-06-02T18:45:17.427324+00:00`\n\n1 of 2 instance(s) failed pre-flight checks for job demo-001.\n\nRecommended action: Block job submission, quarantine failed nodes, and select replacement capacity.\n\n## Instance Results\n\n### i-good001: `GO`\nRisk: `LOW`\nCheck depth: `PHASE_1_FAST`\n\n- `ec2_status` PASS: observed `ok`; expected `ok`; Mock EC2 instance and system status checks were evaluated.\n- `gpu_count` PASS: observed `8`; expected `8`; nvidia-smi -L returned 8 GPU device(s).\n- `efa_available` PASS: observed `present`; expected `present`; fi_info -p efa returned the mock EFA availability result.\n- `fsx_mount` PASS: observed `responsive`; expected `responsive`; Mock mount probe checked FSx path responsiveness.\n- `recent_xid` PASS: observed `none`; expected `no recent critical XID`; Mock kernel log contains no critical XID events.\n- `nvlink_status` PASS: observed `active`; expected `active`; Mock NVLink probe reports active links.\n\n### i-badgpu123: `FAIL`\nRisk: `LOW`\nCheck depth: `PHASE_1_FAST`\nAction: Block job submission and quarantine or replace the failed node.\n\n- `ec2_status` PASS: observed `ok`; expected `ok`; Mock EC2 instance and system status checks were evaluated.\n- `gpu_count` FAIL: observed `7`; expected `8`; nvidia-smi -L returned 7 GPU device(s).\n  Remediation: Quarantine node and request replacement before distributed training.\n- `efa_available` PASS: observed `present`; expected `present`; fi_info -p efa returned the mock EFA availability result.\n- `fsx_mount` PASS: observed `responsive`; expected `responsive`; Mock mount probe checked FSx path responsiveness.\n- `recent_xid` PASS: observed `none`; expected `no recent critical XID`; Mock kernel log contains no critical XID events.\n- `nvlink_status` PASS: observed `active`; expected `active`; Mock NVLink probe reports active links.\n",
+  "report_uri": null,
+  "created_at": "2026-06-02T18:45:17.427324Z"
+}

@@ -1,0 +1,115 @@
+{
+  "job_id": "g5-single-node-check",
+  "profile": "single-node-gpu",
+  "decision": "WARN",
+  "summary": "2 of 2 instance(s) produced warnings for job g5-single-node-check.",
+  "aggregate_counts": {
+    "passed": 0,
+    "warned": 2,
+    "failed": 0
+  },
+  "instances": [
+    {
+      "instance_id": "i-086d21b7ed6e3aaa6",
+      "status": "WARN",
+      "risk_level": "HIGH",
+      "check_depth": "FULL_PHASE_2",
+      "checks": [
+        {
+          "instance_id": "i-086d21b7ed6e3aaa6",
+          "check_name": "instance_state",
+          "status": "PASS",
+          "severity": "INFO",
+          "observed": "running",
+          "expected": "running",
+          "evidence": "EC2 DescribeInstances returned the instance lifecycle state.",
+          "remediation": null
+        },
+        {
+          "instance_id": "i-086d21b7ed6e3aaa6",
+          "check_name": "ec2_status",
+          "status": "PASS",
+          "severity": "INFO",
+          "observed": "state=running, system=ok, instance=ok",
+          "expected": "state=running, system=ok, instance=ok",
+          "evidence": "EC2 DescribeInstanceStatus returned AWS system and instance status checks.",
+          "remediation": null
+        },
+        {
+          "instance_id": "i-086d21b7ed6e3aaa6",
+          "check_name": "gpu_count",
+          "status": "PASS",
+          "severity": "INFO",
+          "observed": "1",
+          "expected": "1",
+          "evidence": "GPU count was inferred from EC2 instance type g5.xlarge.",
+          "remediation": null
+        },
+        {
+          "instance_id": "i-086d21b7ed6e3aaa6",
+          "check_name": "recent_xid",
+          "status": "WARN",
+          "severity": "WARNING",
+          "observed": "not probed",
+          "expected": "no recent critical XID",
+          "evidence": "GPU XID history requires an in-instance log probe; AWS fast mode did not inspect kernel logs.",
+          "remediation": "Enable SSM or another in-instance execution path for this check."
+        }
+      ],
+      "recommended_action": "Allow only with operator visibility; consider a standard check first."
+    },
+    {
+      "instance_id": "i-06ac0cdfca64c2d72",
+      "status": "WARN",
+      "risk_level": "HIGH",
+      "check_depth": "FULL_PHASE_2",
+      "checks": [
+        {
+          "instance_id": "i-06ac0cdfca64c2d72",
+          "check_name": "instance_state",
+          "status": "PASS",
+          "severity": "INFO",
+          "observed": "running",
+          "expected": "running",
+          "evidence": "EC2 DescribeInstances returned the instance lifecycle state.",
+          "remediation": null
+        },
+        {
+          "instance_id": "i-06ac0cdfca64c2d72",
+          "check_name": "ec2_status",
+          "status": "PASS",
+          "severity": "INFO",
+          "observed": "state=running, system=ok, instance=ok",
+          "expected": "state=running, system=ok, instance=ok",
+          "evidence": "EC2 DescribeInstanceStatus returned AWS system and instance status checks.",
+          "remediation": null
+        },
+        {
+          "instance_id": "i-06ac0cdfca64c2d72",
+          "check_name": "gpu_count",
+          "status": "PASS",
+          "severity": "INFO",
+          "observed": "1",
+          "expected": "1",
+          "evidence": "GPU count was inferred from EC2 instance type g5.xlarge.",
+          "remediation": null
+        },
+        {
+          "instance_id": "i-06ac0cdfca64c2d72",
+          "check_name": "recent_xid",
+          "status": "WARN",
+          "severity": "WARNING",
+          "observed": "not probed",
+          "expected": "no recent critical XID",
+          "evidence": "GPU XID history requires an in-instance log probe; AWS fast mode did not inspect kernel logs.",
+          "remediation": "Enable SSM or another in-instance execution path for this check."
+        }
+      ],
+      "recommended_action": "Allow only with operator visibility; consider a standard check first."
+    }
+  ],
+  "recommended_action": "Proceed only if the risk is acceptable; run standard checks for high-value jobs.",
+  "report_markdown": "# GPU Fleet Health Report: g5-single-node-check\n\nDecision: `WARN`\nProfile: `single-node-gpu`\nCreated: `2026-06-02T21:05:52.878563+00:00`\n\n2 of 2 instance(s) produced warnings for job g5-single-node-check.\n\nRecommended action: Proceed only if the risk is acceptable; run standard checks for high-value jobs.\n\n## Instance Results\n\n### i-086d21b7ed6e3aaa6: `WARN`\nRisk: `HIGH`\nCheck depth: `FULL_PHASE_2`\nAction: Allow only with operator visibility; consider a standard check first.\n\n- `instance_state` PASS: observed `running`; expected `running`; EC2 DescribeInstances returned the instance lifecycle state.\n- `ec2_status` PASS: observed `state=running, system=ok, instance=ok`; expected `state=running, system=ok, instance=ok`; EC2 DescribeInstanceStatus returned AWS system and instance status checks.\n- `gpu_count` PASS: observed `1`; expected `1`; GPU count was inferred from EC2 instance type g5.xlarge.\n- `recent_xid` WARN: observed `not probed`; expected `no recent critical XID`; GPU XID history requires an in-instance log probe; AWS fast mode did not inspect kernel logs.\n  Remediation: Enable SSM or another in-instance execution path for this check.\n\n### i-06ac0cdfca64c2d72: `WARN`\nRisk: `HIGH`\nCheck depth: `FULL_PHASE_2`\nAction: Allow only with operator visibility; consider a standard check first.\n\n- `instance_state` PASS: observed `running`; expected `running`; EC2 DescribeInstances returned the instance lifecycle state.\n- `ec2_status` PASS: observed `state=running, system=ok, instance=ok`; expected `state=running, system=ok, instance=ok`; EC2 DescribeInstanceStatus returned AWS system and instance status checks.\n- `gpu_count` PASS: observed `1`; expected `1`; GPU count was inferred from EC2 instance type g5.xlarge.\n- `recent_xid` WARN: observed `not probed`; expected `no recent critical XID`; GPU XID history requires an in-instance log probe; AWS fast mode did not inspect kernel logs.\n  Remediation: Enable SSM or another in-instance execution path for this check.\n",
+  "report_uri": null,
+  "created_at": "2026-06-02T21:05:52.878563Z"
+}
